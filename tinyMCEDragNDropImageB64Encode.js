@@ -26,10 +26,11 @@ tinymce.init({
       "customInsertImage",
     ],
     paste_data_images: true,
-    setup: function ($editor) {
+    selector: '#text-area-selector',
+    setup: function (editor) {
       //////////////////////////////////////////////
       // add custom btn to handle image by selecting them with system explorer
-      $editor.addButton('customInsertImage', {
+      editor.addButton('customInsertImage', {
         icon: 'mce-ico mce-i-image',
         onclick: function () {
           if ($('#hidden_tinymce_fileinput').length > 0) $('#hidden_tinymce_fileinput').remove()
@@ -49,7 +50,7 @@ tinymce.init({
 
       //////////////////////////////////////////////
       // Handle drag & drop image into TinyMce by encoding them in base64 (to avoid uploading them somewhere and keep saving comment in string format)
-      $editor
+      editor
       .on('drag dragstart dragend dragover dragenter dragleave drop', function (e) {
         e.preventDefault()
         e.stopPropagation()
